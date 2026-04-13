@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Journey Invitation · Abide Journey</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    background: linear-gradient(135deg, #6E8F85 0%, #4F6E66 100%);
+    color: #fff;
+  }
+  .card { max-width: 440px; width: 100%; text-align: center; padding: 40px 28px; }
+  .wordmark { font-family: Georgia, serif; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 36px; }
+  .icon-wrap { width: 88px; height: 88px; margin: 0 auto 28px; border-radius: 50%; background: rgba(227,211,168,0.15); display: flex; align-items: center; justify-content: center; }
+  .icon { font-size: 44px; color: #E3D3A8; }
+  .from { font-family: Georgia, serif; font-style: italic; font-size: 22px; color: rgba(255,255,255,0.9); margin-bottom: 18px; }
+  .from strong { font-style: normal; color: #fff; }
+  .title { font-family: Georgia, serif; font-size: 30px; font-weight: 600; margin-bottom: 20px; line-height: 1.25; }
+  .divider { width: 56px; height: 2px; background: #E3D3A8; margin: 0 auto 20px; opacity: 0.7; }
+  .desc { color: rgba(255,255,255,0.8); font-size: 16px; line-height: 1.55; margin-bottom: 36px; padding: 0 8px; }
+  .btn-primary {
+    display: block;
+    background: #E3D3A8; color: #2B3A36;
+    padding: 16px 24px; border-radius: 14px;
+    font-weight: 600; font-size: 17px;
+    text-decoration: none;
+    margin-bottom: 14px;
+  }
+  .btn-secondary {
+    display: block;
+    background: transparent; color: rgba(255,255,255,0.75);
+    padding: 12px 24px;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 14px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="wordmark">Abide Journey</div>
+    <div class="icon-wrap"><span class="icon">♥</span></div>
+    <div class="from" id="from"></div>
+    <div class="title" id="title">A 40-Day Journey Together</div>
+    <div class="divider"></div>
+    <div class="desc">A 40-day devotional experience with shared daily scripture, couples reflection prompts, and a rhythm of walking with God side by side.</div>
+    <a class="btn-primary" href="https://apps.apple.com/app/id6760856253">Download on the App Store</a>
+    <a class="btn-secondary" id="openApp" href="#">Already have the app? Tap to open</a>
+  </div>
+<script>
+  var themeMap = {
+    healingRelationships: "Healing Our Relationship",
+    findingPeace: "Finding Peace Together",
+    knowingGod: "Knowing God as a Couple",
+    spiritualGrowth: "Growing Together in Faith",
+    overcomingAnxiety: "Overcoming Worry Together"
+  };
+  var p = new URLSearchParams(window.location.search);
+  var from = p.get("from") || "";
+  var theme = p.get("theme") || "";
+  var fromEl = document.getElementById("from");
+  if (from) {
+    fromEl.innerHTML = "";
+    var strong = document.createElement("strong");
+    strong.textContent = from;
+    fromEl.appendChild(strong);
+    fromEl.appendChild(document.createTextNode(" wants to journey with you"));
+  } else {
+    fromEl.textContent = "You've been invited to journey together";
+  }
+  if (themeMap[theme]) { document.getElementById("title").textContent = themeMap[theme]; }
+  var openLink = "abidejourney://couple?theme=" + encodeURIComponent(theme) + "&from=" + encodeURIComponent(from);
+  document.getElementById("openApp").setAttribute("href", openLink);
+</script>
+</body>
+</html>

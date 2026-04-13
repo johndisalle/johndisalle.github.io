@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "KLSZXFN257.com.abidejourney.app",
+        "paths": ["/couple", "/couple*", "/gift", "/gift*"]
+      }
+    ]
+  }
+}
